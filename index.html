@@ -1,0 +1,442 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>Java Automation</title>
+
+    <link rel="shortcut icon" href="images/java.png" />
+    <link rel="stylesheet" href="Content/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="Content/simple-sidebar.css" type="text/css" />
+
+    <style>
+        body{
+            padding-top: 56px;
+        }
+    </style>
+
+</head>
+<body ng-app="myApp">
+
+    <nav class="navbar fixed-top navbar-dark bg-dark">
+        <a href="#menu-toggle" class="btn btn-outline-secondary" id="menu-toggle"><span class="navbar-toggler-icon"></span></a>
+        <a class="navbar-brand" href="#"><span><img src="images/java.png" width="25" height="25" /></span> Java Automation</a>
+    </nav>
+
+    <div id="wrapper" ng-controller="MyCtrl">
+
+        <nav id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li>
+                    <a href="#introduccion" du-smooth-scroll du-scrollspy>Introducción</a>
+                </li>
+                <li>
+                    <a href="#maven" du-smooth-scroll du-scrollspy>Apache Maven</a>
+                </li>
+                <li>
+                    <a href="#intellij" du-smooth-scroll du-scrollspy>Intellij IDEA</a>
+                </li>
+                <li>
+                    <a href="#selenium" du-smooth-scroll du-scrollspy>Selenium</a>
+                </li>
+                <li>
+                    <a href="#jbehave" du-smooth-scroll du-scrollspy>JBehave</a>
+                </li>
+                <li>
+                    <a href="#desarrollo" du-smooth-scroll du-scrollspy>Desarrollo de test</a>
+                </li>
+                <li>
+                    <a href="#log4j" du-smooth-scroll du-scrollspy>Log4j 2</a>
+                </li>
+                <li>
+                    <a href="#filtrar_stories" du-smooth-scroll du-scrollspy>Filtrado de stories</a>
+                </li>
+                <li>
+                    <a href="#bitbucket" du-smooth-scroll du-scrollspy>BitBucket</a>
+                </li>
+                <li>
+                    <a href="#ssh" du-smooth-scroll du-scrollspy>SSH</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div id="page-content-wrapper">
+            <section id="introduccion">
+                <br>
+                <h2>Introducción</h2>
+                <hr>
+                <p>
+                    La automatización de pruebas consiste en el uso de software especial (casi siempre separado del software que se prueba) para controlar la ejecución de pruebas y la comparación entre los resultados obtenidos y los resultados esperados. La automatización de pruebas permite incluir pruebas repetitivas y necesarias dentro de un proceso formal de pruebas ya existente o bien adicionar pruebas cuya ejecución manual resultaría difícil.<br>
+                    Las herramientas de pruebas a utilizar serán del lenguaje de programación Java.
+                </p>
+                <h2>Implementación de pruebas en Java</h2>
+                <hr>
+                <p>Para desarrollar pruebas automáticas en Java, se necesitará de las siguientes herramientas:</p>
+                <ul>
+                    <li><strong><em>Apache Maven</em></strong>, un gestor de proyectos.</li>
+                    <li>Java SE Development Kit (<strong><em>JDK</em></strong>).</li>
+                    <li>IDE <strong><em>IntelliJ IDEA</em></strong>.</li>
+                    <li><strong><em>Selenium</em></strong> (este permite a través de un WebDriver controlar el comportamiento de una página web).</li>
+                    <li><strong><em>JBehave</em></strong>, el framework para BDD (Behaviour Driven Development, o Desarrollo Orientado al Comportamiento).</li>
+                </ul>
+            </section>
+            <section id="maven">
+                <h3>Apache Maven</h3>
+                <hr>
+                <h4>¿Qué es Maven?</h4>
+                <p><strong><em>Maven</em></strong> es una herramienta de software para le gestión y construcción de proyectos Java, tiene un modelo de configuración de construcción más simple, basado en un formato XML. Maven utiliza un Proyect Object Model (<strong><em>POM</em></strong>), para describir el proyecto de software a construir, sus dependencias de otros módulos y componentes externos, y el orden de construcción de los elementos. Viene con objetivos predefinidos para realizar ciertas tareas claramente definidas, como la compilación del código y su empaquetado.</p>
+                <h4>Maven y POM</h4>
+                <p>
+                    POM (Proyect Object Model) es la unidad fundamental de trabajo de Maven. Es un archivo XML que contiene información sobre el proyecto y los detalles de configuración usados por Maven para construir el proyecto.<br>
+                    Las librerías disponibles se encuentran en el <a href="https://mvnrepository.com/" target="_blank">repositorio de Maven</a>, donde se proporciona el tag dependency que se debe agregar al archivo pom, para poder usar esas librerias en un proyecto.
+                </p>
+                <p><img src="images/mvn_repository.png" alt="img"></p>
+                <br>
+                <h4>Arquetipos en Maven</h4>
+                <p>
+                    Un arquetipo es definido como un modelo o patrón original a partir del cual se hacen todas las demás cosas del mismo tipo. Estos generan un sistema que proporciona medios consistentes para generar proyectos Maven.<br>
+                    El uso de arquetipos proporciona al desarrollador una manera eficiente de implementar las prácticas utilizadas por su proyecto u organización.<br>
+                    Para crear un proyecto basado en un arquetipo, se debe ejecutar el comando <code>mvn archetype:generate</code>.
+                </p>
+                <br>
+                <h4>Instalación de Maven</h4>
+                <ol>
+                    <li>
+                        <p>Descargar la última versión de Maven desde este <a href="http://apache.dattatec.com/maven/binaries" target="_blank">link</a>.</p>
+                        <p><img src="images/mvn_binaries.png" alt="img"></p>
+                    </li>
+                    <li>
+                        <p>Descomprimir en cualquier directorio.</p>
+                    </li>
+                    <li>
+                        <p>Añadir el directorio donde se encuentra la carpeta bin de Maven a las variables de entorno del sistema operativo.</p>
+                        <ul>
+                            <li>En <strong><em>windows</em></strong>: abriendo las propiedades del sistema (<code>WinKey + Pause</code>) -&gt; Configuración avanzada del sistema -&gt; Variables de entorno, y editar la variable de usuario “Path”, agregando el directorio donde se encuentra la carpeta <em>bin</em> de Maven.</li>
+                            <li>En <strong><em>Linux</em></strong>: ejecutar en una terminal el comando <code>export PATH=/opt/apache-maven-3.5.3/bin:$PATH</code>.</li>
+                        </ul>
+                        <br>
+                        <p><img src="images/environment_variables.png" alt="img"></p>
+                        <p><img src="images/environment_path.png" alt="img"></p>
+                        <p><img src="images/edit_path.png" alt="img"></p>
+                    </li>
+                    <li>
+                        <p>Para validar que Maven funciona ejecutar el comando <code>mvn -v</code>.</p>
+                        <p><img src="images/test_mvn.png" alt="img"></p>
+                    </li>
+                </ol>
+                <p>Para más información sobre Maven ingresar a su <a href="https://maven.apache.org" target="_blank">página oficial</a>.</p>
+                <br>
+            </section>
+            <section id="intellij">
+                <h3>IntelliJ IDEA</h3>
+                <hr>
+                <h4>¿Qué es IntelliJ IDEA?</h4>
+                <p>IntelliJ IDEA es un entorno de desarrollo integrado(IDE) para el desarrollo de programas informáticos. Es desarrollado por JetBrains (anteriormente conocido como IntelliJ), y está disponible en dos ediciones: edición para la comunidad y edición comercial. IntelliJ IDEA no está basada en Eclipse como MyEclipse u Oracle Enterprise Pack para Eclipse.</p>
+                <p><img src="images/intellij.png" alt="img"></p>
+                <br>
+                <h4>Instalación de IntelliJ IDEA y JDK</h4>
+                <br>
+                <ul>
+                    <li><a href="http://www.jetbrains.com/idea/download" target="_blank">IDE IntelliJ IDEA</a>.</li>
+                    <li><a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank">JDK</a>. (Luego de instalar el JDK, hay que añadir la variable de entorno ‘JAVA_HOME’ cuyo directorio va a ser la carpeta donde se instaló el JDK).</li>
+                </ul>
+                <p><img src="images/java_home.png" alt="img"></p>
+                <br>
+            </section>
+            <section id="selenium">
+                <h3>Selenium Web Driver</h3>
+                <hr>
+                <br>
+                <h4>¿Qué es Selenium Web Driver?</h4>
+                <p>
+                    Selenium es un conjunto de diferentes herramientas de software, cada una con una función determinada, con la función de soportar las pruebas automatizadas.<br>
+                    Selenium Web Driver se implementa a través de un controlador del navegador (específico para cada navegador), que envía los comandos y trae los resultados de regreso.<br>
+                    Web Drivers de los navegadores más comunes:
+                </p>
+                <ul>
+                    <li><a href="https://github.com/mozilla/geckodriver/releases" target="_blank">Web Driver</a> de Mozilla Firefox.</li>
+                    <li><a href="http://chromedriver.chromium.org/downloads" target="_blank">Web Driver</a> de Google Chrome.</li>
+                    <li><a href="https://selenium-release.storage.googleapis.com/index.html" target="_blank">Web Driver</a> de Internet Explorer.</li>
+                </ul>
+                <br>
+                <h4>Instalación de Selenium Web Driver</h4>
+                <p>Para agregar Selenium a un proyecto, sólo se debe agregar la dependencia siguiente en el archivo pom.xml.</p>
+                <div class="card">
+                    <div class="card-body">
+                        <pre>&lt;dependency&gt;
+&nbsp&nbsp&nbsp&nbsp&lt;groupId&gt;org.seleniumhq.selenium&lt;/groupId&gt;
+&nbsp&nbsp&nbsp&nbsp&lt;artifactId&gt;selenium-server&lt;/artifactId&gt;
+&nbsp&nbsp&nbsp&nbsp&lt;version&gt;3.12.0&lt;/version&gt;
+&lt;/dependency&gt;</pre>
+                    </div>
+                </div>
+                <p>
+                    <br>
+                    <img src="images/dependency_selenium.png" alt="img">
+                </p>
+                <p>Nota: verificar en la <a href="http://www.seleniumhq.org/download/" target="_blank">página oficial</a> de Selenium la última versión disponible.</p>
+            </section>
+            <section id="jbehave">
+                <h3>JBehave</h3>
+                <hr>
+                <h5>¿Qué es JBehave?</h5>
+                <p>
+                    JBehave es un framework para implementar BDD (Behaviour Driven Development, Desarrollo Orientado al Comportamiento). BDD es una evolución del TDD (Test Driven Development, Desarrollo Orientado a Pruebas), y fue desarrollado para hacer que estas prácticas sean más accesibles e intuitivas para los novatos y los expertos también.<br>
+                    Para más información acceder a la <a href="http://jbehave.org/" target="_blank">página oficial</a> de JBehave.
+                </p>
+                <h4>Instalación de JBehave</h4>
+                <p>En la siguiente sección, se describirá como implementar esta herramienta para desarrollar una prueba automatizada.</p>
+                <br>
+            </section>
+            <section id="desarrollo">
+                <h2>Desarrollo de una prueba automatizada</h2>
+                <hr>
+                <p>Para comenzar a desarrollar pruebas en Java, se utilizarán las herramientas comentadas anteriormente.</p>
+                <p>Lo primero que se debe hacer es generar el proyecto Maven, en base al arquetipo proporcionado por JBehave, para tener la estructura o ‘plantilla’ básica del programa. Para esto se debe:</p>
+                <ol>
+                    <li>
+                        <p>Abrir una terminal y ubicarse en el directorio donde se quiere crear el proyecto, con el comando <code>cd</code>.</p>
+                    </li>
+                    <li>
+                        <p>Ejecutar el siguiente comando:</p>
+                        <div class="card">
+                            <div class="card-body">
+                                <pre>mvn archetype:generate \
+-Dfilter=org.jbehave:jbehave \
+-DartifactId=&quot;MyArtifact&quot; \
+-DgroupId=&quot;MyGroup&quot; \
+-Dpackage=&quot;MyGroup.MyArtifact&quot; \
+-Dversion=1.0 \
+-DinteractiveMode=true</pre></div>
+                        </div>
+                        <br>
+                        <ul>
+                            <li><strong><em>-Dfilter=org.jbehave:jbehave</em></strong> indica el repositorio de Maven donde se encuentra el arquetipo.</li>
+                            <li><strong><em>-DartifactId=“MyArtifact”</em></strong>, se debe asignar un nombre al artefacto, sin las comillas.</li>
+                            <li><strong><em>-DgroupId=“MyGroup”</em></strong>, se debe asignar un nombre al grupo, sin comillas.</li>
+                            <li><strong><em>-Dpackage=“MyGroup.MyArtifact”</em></strong>, se asigna el paquete donde estará el artefacto, sin comillas.</li>
+                            <li><strong><em>-Dversion=1.0</em></strong>, indica la versión del proyecto que se va a generar.</li>
+                            <li><strong><em>-DinteractiveMode=true</em></strong>, activa el modo interactivo en la generación del proyecto.</li>
+                        </ul>
+                        <br>
+                        <p><img src="images/mvn_generate_archetype.png" alt="img"></p>
+                        <p>Cuando se está creando el proyecto en modo interactivo, se muestran las siguientes opciones.</p>
+                        <p><img src="images/choose_archetype.png" alt="img"></p>
+                        <p>Seleccionaremos para este proyecto la opción 5, para crear un arquetipo simple.</p>
+                        <p>Luego se debe seleccionar la versión de JBehave.</p>
+                        <p><img src="images/choose_version.png" alt="img"></p>
+                        <p>Seleccionaremos la última versión (85 hasta el momento).</p>
+                        <p>Ejecutado esto, ya se encuentra creado el proyecto.</p>
+                        <p><img src="images/mvn_proyect_created.png" alt="img"></p>
+                    </li>
+                    <li>
+                        <p>Cambiar el directorio a donde se encuentra el archivo pom.xml.</p>
+                    </li>
+                    <li>
+                        <p>Ejecutar el comando <code>mvn install</code>. Nota: si el comando se ejecuta con errores, acceder al código de “MyStories.java” (que en este caso se encuentra en el directorio <code>testing/src/main/java/com/proyects/testing/MyStories.java)</code>, y eliminar el siguiente parámetro que es el que genera el error.</p>
+                        <p><img src="images/change_myStories.png" alt="img"></p>
+                        <p><img src="images/mvn_install.png" alt="img"></p>
+                        <p>Ahora ya se generaron todos los archivos y carpetas del proyecto en base al arquetipo de JBehave.</p>
+                        <p><img src="images/build_success2.png" alt="img"></p>
+                    </li>
+                    <li>
+                        <p>Abrir el proyecto desde IntelliJ IDEA.</p>
+                        <p><img src="images/result_proyect.png" alt="img"></p>
+                    </li>
+                </ol>
+                <br>
+            </section>
+            <section id="log4j">
+                <h3>Apache Log4j 2</h3>
+                <hr>
+                <h4>¿Qué es Apache Log4j?</h4>
+                <p>Log4j es una biblioteca open source desarrollada en Java por la Apache Software Foundation que permite a los desarrolladores de software escribir mensajes de registro, cuyo propósito es dejar constancia de una determinada transacción en tiempo de ejecución. Log4j permite filtrar los mensajes en función de su importancia. La configuración de salida y granularidad de los mensajes es realizada en tiempo de ejecución mediante el uso de archivos de configuración externos.</p>
+                <p>El uso de esta librería es una buena práctica implementada por los desarrolladores para seguir la traza de errores.</p>
+                <br>
+                <h4>Implementación de Log4j al proyecto</h4>
+                <p>Para importar la librería se debe agregar la siguiente dependencia al archivo pom.xml.</p>
+                <div class="card">
+                    <div class="card-body">
+                        <pre>&lt;!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api --&gt;
+&lt;dependency&gt;
+&nbsp&nbsp&nbsp&nbsp&lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+&nbsp&nbsp&nbsp&nbsp&lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;
+&nbsp&nbsp&nbsp&nbsp&lt;version&gt;1.7.25&lt;/version&gt;
+&lt;/dependency&gt;</pre></div>
+                </div>
+                <br>
+                <p>Luego, se debe crear el objeto Logger que permitirá mostrar los mensajes de registro por consola. mientras se realizan las pruebas. En este caso, el Logger se creará en la clase donde definimos los steps de la prueba, “CrudSteps.java”.</p>
+                <div class="card">
+                    <div class="card-body">
+                        <pre>private static final Logger LOGGER = LoggerFactory.getLogger(CrudSteps.class);
+@BeforeStories
+protected final void beforeStories() {
+LOGGER.info(MessageFormat.format(&quot;{0} &lt;&lt;&lt;&lt;&lt;&lt; @BeforeStories&quot;, getClass().getCanonicalName())); </pre></div>
+                </div>
+                <br>
+                <p>Hecho esto, solo falta ejecutar el test definiendo un nivel de logging. Hay distintos niveles que se pueden seleccionar dependiendo de los tipos de registros que se quieren obtener. Para ver detalladamente cada nivel acceder a este <a href="https://www.tutorialspoint.com/log4j/log4j_logging_levels.htm" target="_blank">tutorial de log4j</a>.</p>
+                <p>Ejecutando el siguiente comando en el directorio donde se encuentra el archivo pom.xml, se ejecuta el test con el nivel de logging “info”.</p>
+                <p><code>mvn clean install -Dorg.slf4j.simpleLogger.defaultLogLevel=info</code></p>
+                <br>
+            </section>
+            <section id="filtrar_stories">
+                <h3>Filtrado de stories</h3>
+                <hr>
+                <p>Cuando en un proyecto existen muchas stories para probar, se puede seleccionar un subconjunto de ellas teniendo en cuenta condiciones determinadas. Por ejemplo, podría querer filtrar las stories con un id determinado asi como con cualquier otro meta-dato que posea la story.</p>
+                <br>
+                <h4>Implementación del filtrado en el proyecto</h4>
+                <p>Para agregar esta funcionalidad al proyecto, se debe agregar el siguiente código al archivo “MyStories.java”.</p>
+                <div class="card">
+                    <div class="card-body">
+                        <pre>@Override
+protected List&lt;String&gt; storyPaths() {
+&nbsp&nbsp&nbsp&nbspfinal URL searchIn;
+&nbsp&nbsp&nbsp&nbspfinal String include, exclude, storyFilterProperties;
+&nbsp&nbsp&nbsp&nbspstoryFilterProperties = System.getProperty(&quot;storyFilter&quot;, &quot;*.story&quot;);
+&nbsp&nbsp&nbsp&nbspsearchIn = codeLocationFromClass(this.getClass());
+&nbsp&nbsp&nbsp&nbspinclude = &quot;**/&quot; + storyFilterProperties;
+&nbsp&nbsp&nbsp&nbspexclude = &quot;**/excluded*.story&quot;;
+&nbsp&nbsp&nbsp&nbspreturn new StoryFinder().findPaths(searchIn, include, exclude);
+}
+
+@Override
+public Embedder configuredEmbedder() {
+&nbsp&nbsp&nbsp&nbspfinal Embedder embedder;
+&nbsp&nbsp&nbsp&nbspembedder = super.configuredEmbedder();
+&nbsp&nbsp&nbsp&nbspString metaFilter = System.getProperty(&quot;meta.filter&quot;);
+&nbsp&nbsp&nbsp&nbspif (metaFilter != null) {
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspembedder.useMetaFilters(Arrays.asList(metaFilter));
+&nbsp&nbsp&nbsp&nbsp}
+&nbsp&nbsp&nbsp&nbspreturn embedder;
+&nbsp&nbsp&nbsp&nbsp}</pre></div>
+                </div>
+                <br>
+                <p>El método <code>storyPaths()</code> permite filtrar stories en base a la ubicación de las mismas, para utilizarlo se debe definir un valor para el parámetro <code>-DstoryFilter</code>. Por otro lado, el método <code>configuredEmbedder()</code> permite filtrar las stories según algún meta-dato determinado de las mismas, para utilizarlo se debe definir un valor para el parámetro <code>-Dmeta.filter</code>.</p>
+                <p>Ejemplos de utilización de filtros:</p>
+                <ul>
+                    <li>mvn clean install -Dmeta.filter=native</li>
+                    <li>mvn clean install -Dmeta.filter=&quot;+storyId 1&quot;</li>
+                    <li>mvn clean install -Dmeta.filter=&quot;+storyId 1 +user=user_name&quot;</li>
+                    <li>mvn clean install -DstoryFilter=native.story</li>
+                    <li>mvn clean install -DstoryFilter=native.story -Dmeta.filter=native</li>
+                    <li>mvn clean install -DstoryFilter=native.story -Dmeta.filter=&quot;+storyId aUS9999&quot;</li>
+                </ul>
+                <p>Nota: los metadatos se definen al principio de una story, por ejemplo:</p>
+                <p><img src="images/filter_stories.png" alt="img"></p>
+                <p>Para más información de cómo filtrar stories, acceder a la <a href="http://jbehave.org/reference/stable/meta-filtering.html" target="_blank">página de JBehave</a>.</p>
+                <br>
+            </section>
+            <section id="bitbucket">
+                <h2>Crear repositorio en BitBucket</h2>
+                <hr>
+                <h3>¿Qué es BitBucket?</h3>
+                <p>
+                    BitBucket es un servicio de alojamiento basado en web, para los proyectos que utilizan el sistema de control de versiones Mercurial y Git. BitBucket ofrece planes comerciales y gratuitos. Se ofrece cuentas gratuitas con un número limitado de repositorios privados (que puede tener hasta cinco usuarios en el caso de cuentas gratuitas), los repositorios privados no se muestran en las páginas de perfil. Este servicio está escrito en Python.<br>
+                    Es similar a GitHub, que utiliza Git.
+                </p>
+                <br>
+                <h3>Creación de un repositorio</h3>
+                <ol>
+                    <li>Crearse una cuenta en la <a href="https://bitbucket.org" target="_blank">página web</a> de BitBucket.</li>
+                    <li>Una vez logeado, seleccionar la opción Create -&gt; Repository</li>
+                </ol>
+                <p><img src="images/create_repository.png" alt="img"></p>
+                <br>
+            </section>
+            <section id="ssh">
+                <h3>Uso de SSH-keygen para acceder al repositorio</h3>
+                <hr>
+                <h4>¿Qué es SSH?</h4>
+                <p>
+                    SSH (Secure Shell o Intérprete de órdenes seguro) es el nombre de un protocolo y del programa que lo implementa, y sirve para acceder a servidores privados a través de una puerta trasera (también llamada backdoor). Permite manejar por completo el servidor mediante un intérprete de comandos, y también puede redirigir el tráfico de X (Sistema de Ventanas X) para poder ejecutar programas gráficos si tenemos ejecutando un Servidor X (en sistemas Unix y Windows). Se le asignó el puerto TCP 22.<br>
+                    Además de la conexión a otros dispositivos, SSH nos permite copiar datos de forma segura (tanto archivos sueltos como simular sesiones FTP cifradas), gestionar claves RSA para no escribir claves al conectar a los dispositivos y pasar los datos de cualquier otra aplicación por un canal seguro tunelizado mediante SSH.
+                </p>
+                <p>La ventaja de utilizar el protocolo SSH para gestionar el repositorio en vez de usar el protocolo HTTPS es que, SSH permite establecer una conexión segura al repositorio, sin necesidad de ingresar el usuario y la contraseña cada vez que se necesite realizar cambios en el repositorio.</p>
+                <br>
+                <h4>Instalación de SSH en Windows</h4>
+                <p>Para verificar si se encuentra instalado el protocolo, ejecutar el comando <code>ssh</code> en una consola. Si la consola no encuentra el comando, hay que instalar el protocolo siguiendo los siguientes pasos:</p>
+                <ol>
+                    <li>
+                        <p>Entrar al <a href="https://github.com/PowerShell/Win32-OpenSSH/releases" target="_blank">proyecto de GitHub</a> de OpenSSH para Windows y descargar “OpenSSH-Win32.zip” o “OpenSSH-Win64.zip” dependiendo de la arquitectura del procesador.</p>
+                    </li>
+                    <li>
+                        <p>Desbloquear el zip descargado, entrando a propiedades y seleccionando la opción “Desbloquear”.</p>
+                        <p><img src="images/ssh_properties.png" alt="img"></p>
+                    </li>
+                    <li>
+                        <p>Descomprimir el zip en cualquier directorio.</p>
+                    </li>
+                    <li>
+                        <p>Agregar la ruta del SSH al Path del SO.</p>
+                        <p><img src="images/ssh_add_path.png" alt="img"></p>
+                    </li>
+                    <li>
+                        <p>Verificar la correcta instalación del SSH abriendo una consola y ejecutando el comando <code>ssh</code>.</p>
+                        <p><img src="images/ssh_test.png" alt="img"></p>
+                    </li>
+                </ol>
+                <br>
+                <h4>Crear clave RSA con ssh-keygen</h4>
+                <p>Utilizando el comando <code>ssh-keygen</code> se crean claves RSA y DSA para la autenticación de clave pública. Genera un par de claves RSA de 2048 bits y solicita un nombre de clave y una frase de paso para proteger la clave privada. La ubicación de la clave se muestra cuando se completa la generación de claves.</p>
+                <ol>
+                    <li>
+                        <p>Configurar el usuario de git ejecutando los siguientes comandos:</p>
+                        <p><code>git config --global user.email \&quot;Email registrado en BitBucket&quot;\</code></p>
+                        <p><code>git config --global user.name \Nombre de usuario\</code></p>
+                    </li>
+                    <li>
+                        <p>Ejecutar el comando <code>ssh-keygen</code>.</p>
+                        <p><img src="images/ssh_generate_key.png" alt="img"></p>
+                    </li>
+                    <li>
+                        <p>Abrir el archivo que contiene la clave generada y copiarla al portapapeles para después agregarla al repositorio.</p>
+                        <p><img src="images/ssh_copy_key.png" alt="img"></p>
+                    </li>
+                    <li>
+                        <p>Agregar la clave al repositorio en BitBucket, seleccionando el repositorio y entrando a “Settings -&gt; Access Keys -&gt; Add Key”.</p>
+                        <p><img src="images/bitbucket_add_key.png" alt="img"></p>
+                    </li>
+                    <li>
+                        <p>Pegar la clave y agregarla al repositorio.</p>
+                        <p><img src="images/bitbucket_paste.png" alt="img"></p>
+                    </li>
+                </ol>
+                <p>Realizado esto, ya está configurada la clave que va a permitir acceder al repositorio desde una consola sin necesidad de escribir usuario y contraseña.</p>
+                <p>Para poder gestionar el repositorio desde consola, se debe instalar la herramienta <a href="https://git-scm.com/" target="_blank">Git</a>. Para ver todos los comandos disponibles acceder a la <a href="https://git-scm.com/doc" target="_blank">documentación oficial</a>.</p>
+                <p>Ejecutando el comando <code>git clone</code> podemos clonar el repositorio en cualquier directorio. Se debe acceder al repositorio a copiar desde la página de BitBucket y seleccionar la opción “Clone -&gt; SSH”.</p>
+                <p><img src="images/clone_repository.png" alt="img"></p>
+                <p><img src="images/clone_repository2.png" alt="img"></p>
+            </section>
+        </div>
+
+    </div>
+    
+
+    <script src="Scripts/jquery-3.3.1.min.js" type="text/javascript"></script>
+    <script src="Scripts/bootstrap.min.js" type="text/javascript"></script>
+    <script src="Scripts/angular.min.js" type="text/javascript"></script>
+    <script src="Scripts/angular-scroll.min.js" type="text/javascript"></script>
+
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+
+        angular.module('myApp', ['duScroll']).
+            controller('MyCtrl', function ($scope, $document) {
+                $scope.toTheTop = function () {
+                    $document.scrollTopAnimated(0, 5000).then(function () {
+                        console && console.log('You just scrolled to the top!');
+                    });
+                }
+                var section3 = angular.element(document.getElementById('intellij'));
+                $scope.toSection3 = function () {
+                    $document.scrollToElementAnimated(section3);
+                }
+            }
+            ).value('duScrollOffset', 71);
+    </script>
+
+</body>
+</html>
